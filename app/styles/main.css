@@ -33,24 +33,32 @@ h1 {
     font-family: 'Chewy', cursive;
     font-size: 60px;
 }
-.logo {
+.navlogo {
     font-family: 'Chewy', cursive;
     font-size: 25px;
 }
 /* Custom page footer */
 .footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+
 }
 
 .container-narrow > hr {
   margin: 30px 0;
 }
 
-/*Main regesiter page*/
-.main{
+/*List on regesiter page(main.html)*/
+.list{
     padding-bottom: 10px;
+}
+.logo {
+    margin-top: 30px;
+    margin-bottom: 80px;
 }
 /* Main marketing message and sign up button */
 /*.jumbotron {

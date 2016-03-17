@@ -1,24 +1,28 @@
 <div class="row">
     <div class="">
-        <form>
+        <form ng-submit="register()">
             <div class="form-group">
                 <label for="exampleInputText">Employee ID</label>
-                <input type="text" class="form-control" id="exampleInputText" placeholder="Employee ID">
+                <input type="text" class="form-control" id="exampleInputText" placeholder="Employee ID" ng-model="newuser.employeeId" >
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="newuser.password">
             </div>
             <div class="form-group">
                 <label for="exampleInputFName">First Name</label>
-                <input type="email" class="form-control" id="exampleInputFName" placeholder="John">
+                <input type="text" class="form-control" id="exampleInputFName" placeholder="John" ng-model="newuser.firstName">
             </div><div class="form-group">
                 <label for="exampleInputLName">Last Name</label>
-                <input type="email" class="form-control" id="exampleInputLName" placeholder="Smith">
+                <input type="text" class="form-control" id="exampleInputLName" placeholder="Smith" ng-model="newuser.lastName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail">Employee ID</label>
+                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Email" ng-model="newuser.email">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Company</label>
-                <input type="text" class="form-control" id="exampleInputText2" placeholder="Full Sail">
+                <input type="text" class="form-control" id="exampleInputText2" placeholder="Full Sail" ng-model="newuser.company">
             </div>
             <button type="submit" class="btn btn-default">Complete</button>
             <a href="#/main" ><button type="button" class="main btn btn-primary">Back</button></a>

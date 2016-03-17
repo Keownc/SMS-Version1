@@ -12,4 +12,4 @@ Run `grunt` for building and `grunt serve` for preview.
 Running `grunt test` will run the unit tests with karma.
 
 # SMS-Version1
->>>>>>> f82f6d90f5b8e446f81307aacf0a2cf8a0f7e66d
+<!-- >>>>>>> f82f6d90f5b8e446f81307aacf0a2cf8a0f7e66d -->
