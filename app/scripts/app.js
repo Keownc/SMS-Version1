@@ -50,6 +50,11 @@ angular
         controller: 'TimeCtrl',
         controllerAs: 'time'
       })
+      .when('/edit', {
+        templateUrl: 'views/edit.html',
+        controller: 'EditCtrl',
+        controllerAs: 'edit'
+      })
       .otherwise({
         redirectTo: '/'
       });
