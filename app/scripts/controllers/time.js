@@ -8,63 +8,74 @@
  * Controller of the workPunchApp
  */
 angular.module('workPunchApp')
-  .controller('TimeCtrl', function ($scope, $rootScope, $firebaseArray, $firebaseAuth) {
+  .controller('TimeCtrl', function ($scope, $rootScope, $firebaseArray, $firebaseAuth, $firebaseObject) {
     // this.awesomeThings = [
     //   'HTML5 Boilerplate',
     //   'AngularJS',
     //   'Karma'
     // ];
     var URL = 'https://workpunchdev.firebaseio.com/';
-    var list = $firebaseArray(new Firebase(URL));
+
+    var today = new Date();
+    var yearNum = today.getFullYear();
+    var monthNum = today.getMonth();
+    var dayNum = today.getDate();
+
+    //console.log("======TODAY======", yearNum , ++monthNum, dayNum);
 
     $rootScope.authObj = $firebaseAuth(new Firebase(URL));
     // authenticate the user when logged In
     $scope.authObj.$onAuth(function(authData) {
+
         if (authData) {
+
+            // show the log out button
+            $rootScope.loggedIn = true;
+
             console.log("Logged in as:", authData.uid);
-             // show the log out button
-             $rootScope.loggedIn = true;
-             var uid = authData.uid;
-             //gets a single user based on ID
-             var user = new Firebase("https://gify.firebaseio.com/users/"+uid);
-             // turns that obj in firebase object
-             var obj = $firebaseObject(user);
-             obj.$loaded().then(function() {
-             //loads the object from Firebase
-             // reads username from Firebase
-             $rootScope.user = obj;
-           } else {
-               console.log("Logged out");
-               // hide the log out and register button/link
-               $rootScope.loggedIn = false;
-               $location.path('/');
+            var uid = authData.uid;
+
+            //gets a single user based on ID
+            var user = new Firebase('https://workpunchdev.firebaseio.com/users/'+uid);
+            //Show user information
+            $scope.user = $firebaseObject(user);
+
+            //Update user information
+
+
+            //Add a timecard record of the employees
+            //A timecard route to hold the time the employee clockd In
+            var punchDateURL = new Firebase(URL + '/users/' +uid+ '/timecards/' + '/' + yearNum + '/' + ++monthNum + '/' + dayNum);
+            var punchObj = $firebaseObject(punchDateURL);
+
+            //A Function to Add Date and Time to the database when the employee Clocks In
+            $scope.clockIn = function() {
+                var punchInDay = Date.now();
+
+                punchObj.dateIn = punchInDay;
+                punchObj.timeIn = punchInDay;
+                //Save to the database
+                punchObj.$save();
+            };
+            //A Function to Add Date and Time to the database when the employee Clocks Out
+            $scope.clockOut = function() {
+                console.info('CLOCK OUT');
+                var punchOutDay = Date.now();
+
+                punchObj.dateOut = punchOutDay;
+                punchObj.timeOut = punchOutDay;
+
+                punchObj.$save();
+            };
+
+            $scope.punchcard = punchObj;
+
+        } else {
+            console.log('Logged out');
+            // hide the log out and register button/link
+            $rootScope.loggedIn = false;
        }
+
     });
-
-    //Show user information
-
-    //Update user information
-
-    //Delete user Information
-
-
-    //show user logs
-    list.$loaded( function(data) {
-        console.log('Data', data);
-        $scope.users = data;
-    }, function(error) {
-        console.error('Error:', error);
-    });
-
-    $scope.users = list;
-
-    //Add user Logs to the database
-    $scope.addTime = function() {
-        list.$add($scope.name).then(function(ref) {
-            var id = ref.key();
-            console.log('added record with id ' + id);
-            list.$indexFor(id); // returns location in the array
-        });
-    };
 
 });
