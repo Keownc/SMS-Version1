@@ -7,6 +7,7 @@
 
 body {
   padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -32,10 +33,35 @@ body {
 h1 {
     font-family: 'Chewy', cursive;
     font-size: 60px;
+    color: #333333;
+}
+h2 {
+    color: #3d8491;
+
 }
 .navlogo {
     font-family: 'Chewy', cursive;
     font-size: 25px;
+}
+.navbar-default {
+    background-color: #17a7ab;
+}
+.navbar-default .navbar-brand {
+    color: #e2dede;
+}
+.navbar-default .navbar-nav > li > a  {
+    color: #e2dede;
+    font-size: 14px;
+    font-weight: 500;
+}
+.navbar-default .navbar-nav > li > a:hover  {
+    color: #fff;
+}
+.navbar-default:hover .navbar-brand:hover {
+    color: #fff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus  {
+    background: #e4e192;
 }
 /* Custom page footer */
 .footer {
@@ -46,7 +72,7 @@ h1 {
     padding-top: 19px;
     color: #777;
     border-top: 1px solid #e5e5e5;
-
+    
 }
 
 .container-narrow > hr {
@@ -60,6 +86,9 @@ h1 {
 .logo {
     margin-top: 30px;
     margin-bottom: 80px;
+}
+p {
+    color: #6d5e61;
 }
 /* Main marketing message and sign up button */
 /*.jumbotron {
