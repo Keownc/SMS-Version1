@@ -37,7 +37,7 @@ angular.module('workPunchApp')
 
               //Add a timecard record of the employees
               //A timecard route to hold the time the employee clockd In
-              var taskURL = new Firebase(URL + '/users/' +uid+ '/timecards/' + '/' + yearNum + '/' + ++monthNum + '/' + dayNum);
+              var taskURL = new Firebase(URL + '/users/' +uid+ '/tasks/' + '/' + yearNum + '/' + ++monthNum + '/' + dayNum);
               var punchObj = $firebaseObject(taskURL);
 
               //A Function to Add Date and Time to the database when the employee Clocks In
