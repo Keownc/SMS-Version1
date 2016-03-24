@@ -1,15 +1,18 @@
 <div class="row">
-    <li ng-repeat="">{{}}</li>
-    <a href="#/edit">Edit</a>
+    <p>
+        Tasks: {{punchcard.dailytasks}}
+    </p>
+    <button type="submit" class="btn btn-btn-danger" ng-click="removeTasks()">Delete</button>
+    <a href="#/time" ><button type="button" class="main btn btn-primary">Back</button></a>
 </div>
 <div class="row">
-    <h2>Clock In</h2>
+    <h2>New Tasks</h2>
     <form ng-submit="dailyTasks()">
         <div class="form-group">
-            <label for="exampleInputText">New Tasks</label>
-            <input type="date" class="form-control" id="exampleInputText" ng-model="userTask.task" >
+            <label for="exampleInputText">Task</label>
+            <input type="text" class="form-control" id="exampleInputText" ng-model="usertask.task" >
         </div>
-        <button type="submit" class="btn btn-default">Punch Me</button>
+        <button type="submit" class="btn btn-default">Submit</button>
 
     </form>
 </div>

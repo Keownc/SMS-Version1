@@ -8,7 +8,7 @@
  * Controller of the workPunchApp
  */
 angular.module('workPunchApp')
-  .controller('TasksCtrl', function ($scope, $rootScope, $firebaseArray, $firebaseAuth, $firebaseObject) {
+  .controller('TasksCtrl', function ($scope, $rootScope, $firebaseArray, $firebaseAuth, $firebaseObject, $route) {
       var URL = 'https://workpunchdev.firebaseio.com/';
 
       var today = new Date();
@@ -35,9 +35,6 @@ angular.module('workPunchApp')
               //Show user information
               $scope.user = $firebaseObject(user);
 
-              //Update user information
-
-
               //Add a timecard record of the employees
               //A timecard route to hold the time the employee clockd In
               var taskURL = new Firebase(URL + '/users/' +uid+ '/timecards/' + '/' + yearNum + '/' + ++monthNum + '/' + dayNum);
@@ -46,25 +43,22 @@ angular.module('workPunchApp')
               //A Function to Add Date and Time to the database when the employee Clocks In
               $scope.dailyTasks = function() {
 
-                  punchObj.dailytasks = userTask.task;
+                  punchObj.dailytasks = $scope.usertask.task;
                   //Save to the database
                   punchObj.$save();
+                  $route.reload();
               };
               $scope.punchcard = punchObj;
 
-
-              $scope.removeTask = function() {
-                  console.log("Saved successfully.");
-                  $scope.user.company = $scope.edituser.company;
-                  $scope.user.employeeId = $scope.edituser.employeeId;
-                  obj.$save();
-                //   $location.path('/time');
-              }
+              $scope.removeTasks = function() {
+                  punchObj.$remove();
+            };
+               $scope.punchcard = punchObj;
           } else {
               console.log('Logged out');
               // hide the log out and register button/link
               $rootScope.loggedIn = false;
-         }
+         };
 
       });
   });
